@@ -1,35 +1,90 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  environmentGitPublic: false
-  project: ""
+  clusterName: oss-weasel
+  devEnvApprovers:
+  - abayer
+  environmentGitOwner: jenkins-x
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: jenkins-x-infra
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  vaultName: oss-weasel
+  vaultSAName: oss-weasel-vt
+  zone: europe-west1-c
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    domain: 34.77.26.8.nip.io
+    externalDNS: false
+    namespaceSubDomain: -jx.
+    tls:
+      email: ""
+      enabled: false
+      production: true
+  key: dev
+  repository: environment-oss-weasel-dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+  repository: environment-oss-weasel-staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+  repository: environment-oss-weasel-production
+gitops: true
 ingress:
-  domain: ""
+  domain: 34.77.26.8.nip.io
   externalDNS: false
+  namespaceSubDomain: -jx.
   tls:
     email: ""
     enabled: false
-    production: false
+    production: true
 kaniko: true
-secretStorage: local
+repository: nexus
+secretStorage: vault
 storage:
+  backup:
+    enabled: true
+    url: gs://backup-oss-weasel-e5201f35d164
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://logs-oss-weasel-e5201f35d164
   reports:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://reports-oss-weasel-e5201f35d164
   repository:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://repository-oss-weasel-e5201f35d164
+vault:
+  bucket: vault-oss-weasel-e5201f35d164
+  key: crypto-key-oss-weasel-e5201f35d164
+  keyring: keyring-oss-weasel-e5201f35d164
+  name: oss-weasel
+  serviceAccount: oss-weasel-vt
+velero:
+  namespace: velero
+  schedule: 0 * * * *
+  serviceAccount: oss-weasel-vo
+  ttl: 720h0m0s
 versionStream:
-  ref: "master"
+  ref: v1.0.503
   url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: lighthouse

@@ -1,0 +1,10 @@
+adminUser:
+  password: vault:oss-weasel/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: jenkins-x-admin@googlegroups.com
+  token: vault:oss-weasel/pipelineUser:token
+  username: jenkins-x-bot
+prow:
+  hmacToken: vault:oss-weasel/prow:hmacToken
