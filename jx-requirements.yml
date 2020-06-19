@@ -1,6 +1,6 @@
 autoUpdate:
   enabled: true
-  schedule: 5 0 * * 2
+  schedule: 0 5 * * 2
 bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
 cluster:
   clusterName: oss-weasel
