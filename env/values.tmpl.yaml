@@ -6,8 +6,101 @@ tekton:
 {{- else }}
   enabled: false
 {{- end }}
+  auth:
+    docker:
+      username: vault:oss-weasel/creds/tekton-docker:username
+      password: vault:oss-weasel/creds/tekton-docker:password # pragma: allowlist secret
+      url: https://index.docker.io/v1/
+  webhook:
+    enabled: false
 
 # Use cert-manager 0.11 CRDs/APIs with Dex
 dex:
   certs:
     newApi: true
+
+datadog:
+  apiKey: vault:oss-weasel/arcalos/datadog-app:apiKey
+  appKey: vault:oss-weasel/arcalos/datadog-app:appKey
+
+JenkinsXBDD: vault:oss-weasel/sa/jenkins-x-bdd:json
+
+JenkinsXGitHub:
+  username: "{{ .Parameters.pipelineUser.username }}"
+  password: "{{ .Parameters.pipelineUser.token }}"
+
+JenkinsXGHETestUser:
+  username: vault:oss-weasel/creds/jenkins-x-github-ent-test-user:username
+  password: vault:oss-weasel/creds/jenkins-x-github-ent-test-user:password # pragma: allowlist secret
+
+JenkinsXGHEApproverTestUser:
+  username: vault:oss-weasel/creds/jenkins-x-github-ent-approver-test-user:username
+  password: vault:oss-weasel/creds/jenkins-x-github-ent-approver-test-user:password # pragma: allowlist secret
+
+JenkinsXBBSTestUser:
+  username: vault:oss-weasel/creds/jenkins-x-bbs-test-user:username
+  password: vault:oss-weasel/creds/jenkins-x-bbs-test-user:password # pragma: allowlist secret
+
+JenkinsXBBSApproverTestUser:
+  username: vault:oss-weasel/creds/jenkins-x-bbs-approver-test-user:username
+  password: vault:oss-weasel/creds/jenkins-x-bbs-approver-test-user:password # pragma: allowlist secret
+
+JenkinsXGitLabTestUser:
+  username: vault:oss-weasel/creds/jenkins-x-gitlab-test-user:username
+  password: vault:oss-weasel/creds/jenkins-x-gitlab-test-user:password # pragma: allowlist secret
+
+JenkinsXGitLabApproverTestUser:
+  username: vault:oss-weasel/creds/jenkins-x-gitlab-approver-test-user:username
+  password: vault:oss-weasel/creds/jenkins-x-gitlab-approver-test-user:password # pragma: allowlist secret
+
+JenkinsXVersionsTestUser:
+  username: vault:oss-weasel/creds/jenkins-x-versions-test-user:username
+  password: vault:oss-weasel/creds/jenkins-x-versions-test-user:password # pragma: allowlist secret
+
+JenkinsXLighthouseTestUser:
+  username: vault:oss-weasel/creds/jenkins-x-lighthouse-test-user:username
+  password: vault:oss-weasel/creds/jenkins-x-lighthouse-test-user:password # pragma: allowlist secret
+
+TestJenkinsUser:
+  username: vault:oss-weasel/creds/test-jenkins-user:username
+  password: vault:oss-weasel/creds/test-jenkins-user:password # pragma: allowlist secret
+
+JenkinsXGKEServiceAccount:
+  filename: vault:oss-weasel/sa/jenkins-x-sa:filename
+  data: vault:oss-weasel/sa/jenkins-x-sa:data
+
+JenkinsXGitHubTest:
+  username: vault:oss-weasel/creds/gh-test:username
+  password: vault:oss-weasel/creds/gh-test:password # pragma: allowlist secret
+
+GcsJenkinsXChartMuseumKey: vault:oss-weasel/sa/chartmuseum-gcs:data
+
+terraformGoogleJXSA: vault:oss-weasel/sa/terraform-google-jx-sa:json
+
+arcalos:
+  adminUsername: vault:oss-weasel/arcalos:admin-username
+  dashboardAuthId: vault:oss-weasel/arcalos:dashboard-auth-id
+  dashboardAuthSecret: vault:oss-weasel/arcalos:dashboard-auth-secret # pragma: allowlist secret
+  domainIssuerPassword: vault:oss-weasel/arcalos:domain-issuer-password # pragma: allowlist secret
+  domainIssuerUsername: vault:oss-weasel/arcalos:domain-issuer-username
+  pipelineGithubUser: vault:oss-weasel/arcalos:pipeline-github-user
+  pipelineGithubToken: vault:oss-weasel/arcalos:pipeline-github-token
+  pipelineGithubEmail: vault:oss-weasel/arcalos:pipeline-github-email
+  gitOwner: vault:oss-weasel/arcalos:git-owner
+  prowHMACToken: vault:oss-weasel/arcalos:prow-hmac-token
+  ciSA: vault:oss-weasel/arcalos/sa:json
+  arcalosProdSA: vault:oss-weasel/arcalos/arcalos-prod-sa:json
+  segmentWriteKey: vault:oss-weasel/arcalos/segment:write-key
+
+CJXDChartmuseum:
+  username: vault:oss-weasel/creds/cb-cjxd-chartmuseum:username
+  password: vault:oss-weasel/creds/cb-cjxd-chartmuseum:password
+
+whitesource:
+  apiKey: vault:oss-weasel/creds/whitesource:api-key
+  userKey: vault:oss-weasel/creds//whitesource:user-key
+
+AWSCreds:
+  credentials: vault:oss-weasel/creds/aws_creds:credentials
+  account_id: vault:oss-weasel/creds/aws_creds:account_id
+  vault_user: vault:oss-weasel/creds/aws_creds:vault_user
