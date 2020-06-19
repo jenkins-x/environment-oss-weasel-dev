@@ -1,11 +1,23 @@
 autoUpdate:
-  enabled: false
-  schedule: ""
+  enabled: true
+  schedule: 5 0 * * 2
 bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
 cluster:
   clusterName: oss-weasel
   devEnvApprovers:
+  - rawlingsj
+  - jstrachan
+  - ccojocar
+  - garethjevans
+  - pmuir
+  - cagiti
   - abayer
+  - mpailloncy
+  - macox
+  - daveconde
+  - dgozalo
+  - hferentschik
+  - xino12
   environmentGitOwner: jenkins-x
   gitKind: github
   gitName: github
