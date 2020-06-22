@@ -1,0 +1,68 @@
+apiVersion: jenkins.io/v1
+kind: Scheduler
+metadata:
+  name: boot-config-scheduler
+spec:
+  merger:
+    mergeMethod: rebase
+  plugins:
+    entries:
+      - label
+  postsubmits:
+    replace: true
+    entries:
+    - agent: tekton
+      branches:
+        entries:
+        - master
+      name: release
+      context: release
+  presubmits:
+    replace: true
+    entries:
+    - agent: tekton
+      alwaysRun: true
+      context: bdd-local
+      name: bdd-local
+      policy:
+        requiredStatusChecks:
+          contexts:
+            entries:
+            - bdd-local
+            - bdd-vault
+      queries:
+      - labels:
+          entries:
+          - approved
+          - lgtm
+        missingLabels:
+          entries:
+          - do-not-merge
+          - do-not-merge/hold
+          - do-not-merge/work-in-progress
+          - needs-ok-to-test
+          - needs-rebase
+          - needs-security-review
+      report: true
+      rerunCommand: /test bdd-local
+      trigger: (?m)^/test( all| bdd-local),?(s+|$)
+    - agent: tekton
+      alwaysRun: true
+      context: bdd-vault
+      name: bdd-vault
+      queries:
+      - labels:
+          entries:
+          - approved
+          - lgtm
+        missingLabels:
+          entries:
+          - do-not-merge
+          - do-not-merge/hold
+          - do-not-merge/work-in-progress
+          - needs-ok-to-test
+          - needs-rebase
+          - needs-security-review
+      report: true
+      rerunCommand: /test bdd-vault
+      trigger: (?m)^/test( all| bdd-vault),?(s+|$)
