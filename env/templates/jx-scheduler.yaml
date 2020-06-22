@@ -1,0 +1,251 @@
+apiVersion: jenkins.io/v1
+kind: Scheduler
+metadata:
+  name: jx-scheduler
+spec:
+  lgtm:
+    reviewActsAsLgtm: true
+  merger:
+    mergeMethod: rebase
+  plugins:
+    entries:
+      - label
+  postsubmits:
+    replace: true
+    entries:
+    - agent: tekton
+      branches:
+        entries:
+        - master
+      name: release
+      context: ""
+      policy:
+        requiredStatusChecks:
+          contexts:
+            entries:
+            - whitesource
+    - agent: tekton
+      branches:
+        entries:
+        - master
+      cluster: ""
+      context: whitesource
+      labels: {}
+      maxConcurrency: 0
+      name: whitesource
+      report: false
+      runIfChanged: ""
+      skipBranches: {}
+  presubmits:
+    replace: true
+    entries:
+    - agent: tekton
+      alwaysRun: true
+      context: integration
+      name: integration
+      policy:
+        requiredStatusChecks:
+          contexts:
+            entries:
+            - integration
+            - tekton
+            - lint
+            - boot-vault
+            - tf-boot
+            - unit
+            - codegen
+      queries:
+      - labels:
+          entries:
+          - approved
+          - lgtm
+        missingLabels:
+          entries:
+          - do-not-merge
+          - do-not-merge/hold
+          - do-not-merge/work-in-progress
+          - needs-ok-to-test
+          - needs-rebase
+          - needs-security-review
+      report: true
+      rerunCommand: /test integration
+      trigger: (?m)^/test( all| integration),?(\s+|$)
+    - agent: tekton
+      alwaysRun: false
+      context: bdd
+      name: bdd
+      queries:
+        - labels:
+            entries:
+              - approved
+              - lgtm
+          missingLabels:
+            entries:
+              - do-not-merge
+              - do-not-merge/hold
+              - do-not-merge/work-in-progress
+              - needs-ok-to-test
+              - needs-rebase
+              - needs-security-review
+      report: true
+      rerunCommand: /test bdd
+      trigger: (?m)^/test( bdd),?(\s+|$)
+    - agent: tekton
+      alwaysRun: true
+      context: tekton
+      name: tekton
+      queries:
+      - labels:
+          entries:
+           - approved
+           - lgtm
+        missingLabels:
+          entries:
+          - do-not-merge
+          - do-not-merge/hold
+          - do-not-merge/work-in-progress
+          - needs-ok-to-test
+          - needs-rebase
+      report: true
+      rerunCommand: /test tekton
+      trigger: (?m)^/test( all| tekton),?(\s+|$)
+    - agent: tekton
+      alwaysRun: true
+      context: lint
+      name: lint
+      queries:
+      - labels:
+          entries:
+          - approved
+          - lgtm
+        missingLabels:
+          entries:
+          - do-not-merge
+          - do-not-merge/hold
+          - do-not-merge/work-in-progress
+          - needs-ok-to-test
+          - needs-rebase
+          - needs-security-review
+      report: true
+      rerunCommand: /test lint
+      trigger: (?m)^/test( all| lint),?(\s+|$)
+    - agent: tekton
+      alwaysRun: true
+      context: codegen
+      name: codegen
+      queries:
+      - labels:
+          entries:
+          - approved
+          - lgtm
+        missingLabels:
+          entries:
+          - do-not-merge
+          - do-not-merge/hold
+          - do-not-merge/work-in-progress
+          - needs-ok-to-test
+          - needs-rebase
+          - needs-security-review
+      report: true
+      rerunCommand: /test codegen
+      trigger: (?m)^/test( all| codegen),?(\s+|$)      
+    - agent: tekton
+      alwaysRun: false
+      context: images
+      name: images
+      queries:
+        - labels:
+            entries:
+              - approved
+              - lgtm
+          missingLabels:
+            entries:
+              - do-not-merge
+              - do-not-merge/hold
+              - do-not-merge/work-in-progress
+              - needs-ok-to-test
+              - needs-rebase
+              - needs-security-review
+      report: true
+      rerunCommand: /build images
+      trigger: (?m)^/build images,?(\s+|$)
+    - agent: tekton
+      alwaysRun: true
+      context: boot-vault
+      name: boot-vault
+      queries:
+        - labels:
+            entries:
+              - approved
+              - lgtm
+          missingLabels:
+            entries:
+              - do-not-merge
+              - do-not-merge/hold
+              - do-not-merge/work-in-progress
+              - needs-ok-to-test
+              - needs-rebase
+              - needs-security-review
+      report: true
+      rerunCommand: /test boot-vault
+      trigger: (?m)^/test( all| boot| boot-vault),?(\s+|$)
+    - agent: tekton
+      alwaysRun: true
+      context: tf-boot
+      name: tf-boot
+      queries:
+        - labels:
+            entries:
+              - approved
+              - lgtm
+          missingLabels:
+            entries:
+              - do-not-merge
+              - do-not-merge/hold
+              - do-not-merge/work-in-progress
+              - needs-ok-to-test
+              - needs-rebase
+              - needs-security-review
+      report: true
+      rerunCommand: /test tf-boot
+      trigger: (?m)^/test( all| tf-boot),?(\s+|$)      
+    - agent: tekton
+      alwaysRun: true
+      context: unit
+      name: unit
+      queries:
+        - labels:
+            entries:
+              - approved
+              - lgtm
+          missingLabels:
+            entries:
+              - do-not-merge
+              - do-not-merge/hold
+              - do-not-merge/work-in-progress
+              - needs-ok-to-test
+              - needs-rebase
+              - needs-security-review
+      report: true
+      rerunCommand: /test unit
+      trigger: (?m)^/test unit,?(\s+|$)      
+    - agent: tekton
+      alwaysRun: false
+      context: boot-lh-ghe
+      name: boot-lh-ghe
+      queries:
+        - labels:
+            entries:
+              - approved
+              - lgtm
+          missingLabels:
+            entries:
+              - do-not-merge
+              - do-not-merge/hold
+              - do-not-merge/work-in-progress
+              - needs-ok-to-test
+              - needs-rebase
+              - needs-security-review
+      report: true
+      rerunCommand: /test boot-lh-ghe
+      trigger: (?m)^/test boot-lh-ghe,?(\s+|$)
