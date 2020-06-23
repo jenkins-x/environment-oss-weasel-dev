@@ -1,8 +1,0 @@
-sdm:
-  account: cloudbees
-  installId: oss-weasel
-  privateKey: vault:oss-weasel/sdm:jxAppPrivateKey
-# As we have a lot pipeline activities on oss weasel
-resources:
-  limits:
-    memory: 1Gi

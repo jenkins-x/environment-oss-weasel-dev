@@ -1,4 +1,0 @@
-sdm:
-  account: cloudbees
-  installId: oss-weasel
-  privateKey: vault:oss-weasel/sdm:tektonAppPrivateKey
