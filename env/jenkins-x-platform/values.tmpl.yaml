@@ -12,14 +12,30 @@ cleanup:
   enabled: false
 
 chartmuseum:
-{{- if and (hasKey .Requirements "repository") (eq .Requirements.repository "bucketrepo") }}
-  enabled: false
-{{- else }}
   env:
+    open:
+      AUTH_ANONYMOUS_GET: true
+      DISABLE_API: false
+      STORAGE: google
+      STORAGE_GOOGLE_BUCKET: chartmuseum.jenkins-x.io
+      STORAGE_GOOGLE_PREFIX: charts
     secret:
       BASIC_AUTH_USER: "{{ .Parameters.adminUser.username }}"
       BASIC_AUTH_PASS: "{{ .Parameters.adminUser.password }}"
-{{- end }}
+  gcp:
+    secret:
+      enabled: true
+      key: gcs-chartmuseum.key.json
+      name: gcs-jenkinsx-chartmuseum
+  image:
+    tag: v0.7.1
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1024Mi
+    requests:
+      cpu: 320m
+      memory: 256Mi
 
 nexus:
   defaultAdminPassword: "{{ .Parameters.adminUser.password }}"
