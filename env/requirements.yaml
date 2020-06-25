@@ -35,3 +35,11 @@ dependencies:
 - name: jx-app-ui
   repository: http://chartmuseum.jenkins-x.io
   version: 0.1.211
+- name: jx-app-ui
+  repository: http://chartmuseum.jenkins-x.io
+  version: 0.1.211
+  alias: jxuisso
+- alias: oauth-proxy-jxui-frontend
+  name: oauth2-proxy
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 2.2.2

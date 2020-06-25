@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jenkins-x-jxui-sso-experiment
+spec:
+  rules:
+  - host: dashboard-ssotest.jenkins-x.live
+    http:
+      paths:
+      - backend:
+          serviceName: oauth-proxy-jxui-frontend
+          servicePort: 80
+  tls:
+  - hosts:
+    - dashboard-ssotest.jenkins-x.live
+    secretName: tls-jenkins-x-live-p
