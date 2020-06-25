@@ -1,0 +1,10 @@
+jxuisso:
+  enableTLS: true
+  ingress:
+    create: true
+    domain: jenkins-x.live
+    subdomain: dashboard-sso
+  sso:
+    create: true
+    useSSOOperator: false
+    connector: github
