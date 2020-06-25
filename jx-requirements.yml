@@ -31,12 +31,12 @@ cluster:
   zone: europe-west1-c
 environments:
 - ingress:
-    domain: 34.77.26.8.nip.io
-    externalDNS: false
+    domain: jenkins-x.live
+    externalDNS: true
     namespaceSubDomain: -jx.
     tls:
-      email: ""
-      enabled: false
+      email: jenkins-x@cloudbees.com
+      enabled: true
       production: true
   key: dev
   repository: environment-oss-weasel-dev
@@ -62,12 +62,12 @@ environments:
   repository: environment-oss-weasel-production
 gitops: true
 ingress:
-  domain: 34.77.26.8.nip.io
-  externalDNS: false
+  domain: jenkins-x.live
+  externalDNS: true
   namespaceSubDomain: -jx.
   tls:
-    email: ""
-    enabled: false
+    email: jenkins-x@cloudbees.com
+    enabled: true
     production: true
 kaniko: true
 repository: nexus
