@@ -307,6 +307,7 @@ arcalos:
   prowHMACToken: vault:oss-weasel/arcalos:prow-hmac-token
   ciSA: vault:oss-weasel/arcalos/sa:json
   arcalosProdSA: vault:oss-weasel/arcalos/arcalos-prod-sa:json
+  arcalosBetaPreviewSA: vault:oss-weasel/arcalos/arcalos-beta-preview-sa:json
   segmentWriteKey: vault:oss-weasel/arcalos/segment:write-key
 
 CJXDChartmuseum:
