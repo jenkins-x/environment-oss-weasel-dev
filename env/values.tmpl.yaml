@@ -322,3 +322,8 @@ AWSCreds:
   credentials: vault:oss-weasel/creds/aws_creds:credentials
   account_id: vault:oss-weasel/creds/aws_creds:account_id
   vault_user: vault:oss-weasel/creds/aws_creds:vault_user
+
+netrc: |-
+  machine github.com
+    login "{{ .Parameters.pipelineUser.username }}"
+    password "{{ .Parameters.pipelineUser.token }}"
