@@ -6,3 +6,6 @@ jxui:
     subdomain: dashboard-jx
   sso:
     create: false
+  serviceaccount:
+    annotations:
+      iam.gke.io/gcp-service-account: oss-weasel-log-viewer@jenkins-x-infra.iam.gserviceaccount.com
