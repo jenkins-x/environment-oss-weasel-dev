@@ -1,0 +1,19 @@
+config:
+  clientID: vault:oss-weasel/sso:authID
+  clientSecret: vault:oss-weasel/sso:authSecret
+extraArgs:
+  cookie-secret: vault:oss-weasel/sso:cookieSecret
+  provider: github
+  cookie-name: jxuisso
+  cookie-domain: ".jenkins-x.live"
+  github-org: "jenkins-x-dashboard"
+  email-domain: "*"
+  pass-authorization-header: false
+  pass-access-token: false
+  pass-basic-auth: false
+  skip-provider-button: true
+  upstream: http://jxui:80/
+image:
+  repository: bitnami/oauth2-proxy
+  tag: 5.1.1
+fullnameOverride: oauth2-proxy-jxui

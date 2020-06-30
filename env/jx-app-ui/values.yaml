@@ -1,10 +1,12 @@
 jxui:
   enableTLS: true
+  auth:
+    # auth needs to be disabled in JXUI backend when running oauth2-proxy with
+    # GitHub IDP in front of it because JXUI backend treats every bearer token
+    # as JWT while GitHub provides as plain OAuth2 Access Token.
+    type: none
   ingress:
-    create: true
-    domain: jenkins-x.live
-    subdomain: dashboard-jx
-  sso:
+    # oauth2-proxy's Ingress is used instead
     create: false
   serviceaccount:
     annotations:
