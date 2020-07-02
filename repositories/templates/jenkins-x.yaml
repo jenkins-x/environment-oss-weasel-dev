@@ -702,3 +702,19 @@ spec:
   providerName: github
   org: jenkins-x
   repo: jx-role-controller
+---
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  labels:
+    owner: jenkins-x
+    provider: github
+    repository: jx-codegen
+  name: jenkins-x-jx-codegen
+  namespace: jx
+spec:
+  description: Imported application for jenkins-x/jx-codegen
+  provider: https://github.com
+  providerName: github
+  org: jenkins-x
+  repo: jx-codegen
