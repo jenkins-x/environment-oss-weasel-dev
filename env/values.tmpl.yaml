@@ -308,6 +308,7 @@ arcalos:
   ciSA: vault:oss-weasel/arcalos/sa:json
   arcalosProdSA: vault:oss-weasel/arcalos/arcalos-prod-sa:json
   arcalosBetaPreviewSA: vault:oss-weasel/arcalos/arcalos-beta-preview-sa:json
+  arcalosCnCicdSA: vault:oss-weasel/arcalos/cn-cicd-producer-sa:json
   segmentWriteKey: vault:oss-weasel/arcalos/segment:write-key
 
 CJXDChartmuseum:
