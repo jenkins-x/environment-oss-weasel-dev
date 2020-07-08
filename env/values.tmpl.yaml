@@ -240,10 +240,6 @@ dex:
   certs:
     newApi: true
 
-datadog:
-  apiKey: vault:oss-weasel/arcalos/datadog-app:apiKey
-  appKey: vault:oss-weasel/arcalos/datadog-app:appKey
-
 JenkinsXBDD: vault:oss-weasel/sa/jenkins-x-bdd:json
 
 JenkinsXGHETestUser:
@@ -293,23 +289,6 @@ JenkinsXGitHubTest:
 GcsJenkinsXChartMuseumKey: vault:oss-weasel/sa/chartmuseum-gcs:data
 
 terraformGoogleJXSA: vault:oss-weasel/sa/terraform-google-jx-sa:json
-
-arcalos:
-  adminUsername: vault:oss-weasel/arcalos:admin-username
-  dashboardAuthId: vault:oss-weasel/arcalos:dashboard-auth-id
-  dashboardAuthSecret: vault:oss-weasel/arcalos:dashboard-auth-secret # pragma: allowlist secret
-  domainIssuerPassword: vault:oss-weasel/arcalos:domain-issuer-password # pragma: allowlist secret
-  domainIssuerUsername: vault:oss-weasel/arcalos:domain-issuer-username
-  pipelineGithubUser: vault:oss-weasel/arcalos:pipeline-github-user
-  pipelineGithubToken: vault:oss-weasel/arcalos:pipeline-github-token
-  pipelineGithubEmail: vault:oss-weasel/arcalos:pipeline-github-email
-  gitOwner: vault:oss-weasel/arcalos:git-owner
-  prowHMACToken: vault:oss-weasel/arcalos:prow-hmac-token
-  ciSA: vault:oss-weasel/arcalos/sa:json
-  arcalosProdSA: vault:oss-weasel/arcalos/arcalos-prod-sa:json
-  arcalosBetaPreviewSA: vault:oss-weasel/arcalos/arcalos-beta-preview-sa:json
-  arcalosCnCicdSA: vault:oss-weasel/arcalos/cn-cicd-producer-sa:json
-  segmentWriteKey: vault:oss-weasel/arcalos/segment:write-key
 
 CJXDChartmuseum:
   username: vault:oss-weasel/creds/cb-cjxd-chartmuseum:username
