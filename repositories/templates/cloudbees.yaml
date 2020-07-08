@@ -53,22 +53,6 @@ metadata:
   labels:
     owner: cloudbees
     provider: github
-    repository: jx-tenant-service
-  name: cloudbees-jx-tenant-service
-  namespace: jx
-spec:
-  description: Imported application for cloudbees/jx-tenant-service
-  provider: https://github.com
-  providerName: github
-  org: cloudbees
-  repo: jx-tenant-service
----
-apiVersion: jenkins.io/v1
-kind: SourceRepository
-metadata:
-  labels:
-    owner: cloudbees
-    provider: github
     repository: cb-app-slack
   name: cloudbees-cb-app-slack
   namespace: jx
