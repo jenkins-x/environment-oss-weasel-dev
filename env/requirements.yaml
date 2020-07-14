@@ -34,7 +34,7 @@ dependencies:
   version: 0.1.12
 - name: jx-app-ui
   repository: https://charts.cloudbees.com/cjxd/cloudbees
-  version: 0.1.213
+  version: 0.1.218
 - alias: oauth2-proxy-jxui
   name: oauth2-proxy
   repository: https://kubernetes-charts.storage.googleapis.com/
