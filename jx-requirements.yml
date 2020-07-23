@@ -99,6 +99,6 @@ velero:
   serviceAccount: oss-weasel-vo
   ttl: 720h0m0s
 versionStream:
-  ref: v1.0.531
+  ref: v1.0.544
   url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: lighthouse
