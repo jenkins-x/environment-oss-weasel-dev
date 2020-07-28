@@ -50,6 +50,7 @@ nexus:
 {{- end }}
 
 jenkins:
+  enabled: false
   Master:
     AdminPassword: "{{ .Parameters.adminUser.password }}"
 
