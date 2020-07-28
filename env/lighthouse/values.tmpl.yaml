@@ -47,6 +47,6 @@ cluster:
 {{- end }}
 {{- end }}
 
-# Specifying environment variable for link to build reports
-env:
-  LIGHTHOUSE_REPORT_URL_BASE: "https://dashboard{{.Requirements.ingress.namespaceSubDomain}}{{.Requirements.ingress.domain}}"
+# Disable the legacy jx controller in favor of lighthouse-jx's.
+engines:
+  jx: false
