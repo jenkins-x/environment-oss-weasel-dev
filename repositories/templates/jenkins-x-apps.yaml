@@ -334,3 +334,51 @@ spec:
   providerName: github
   org: jenkins-x-apps
   repo: jx-app-fossa
+---
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  labels:
+    owner: jenkins-x-apps
+    provider: github
+    repository: jx-app-flagger
+  name: jenkins-x-apps-jx-app-flagger
+  namespace: jx
+spec:
+  description: Imported application for jenkins-x-apps/jx-app-flagger
+  org: jenkins-x-apps
+  provider: https://github.com
+  providerName: github
+  repo: jx-app-flagger
+---
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  labels:
+    owner: jenkins-x-apps
+    provider: github
+    repository: jx-app-ingress
+  name: jenkins-x-apps-jx-app-ingress
+  namespace: jx
+spec:
+  description: Imported application for jenkins-x-apps/jx-app-ingress
+  org: jenkins-x-apps
+  provider: https://github.com
+  providerName: github
+  repo: jx-app-ingress
+---
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  labels:
+    owner: jenkins-x-apps
+    provider: github
+    repository: jx-app-owasp-zap
+  name: jenkins-x-apps-jx-app-owasp-zap
+  namespace: jx
+spec:
+  description: Imported application for jenkins-x-apps/jx-app-owasp-zap
+  org: jenkins-x-apps
+  provider: https://github.com
+  providerName: github
+  repo: jx-app-owasp-zap
