@@ -3,6 +3,10 @@ kind: Scheduler
 metadata:
   name: lh-scheduler
 spec:
+  lgtm:
+    reviewActsAsLgtm: true
+  merger:
+    mergeMethod: rebase
   plugins:
     entries:
       - label
