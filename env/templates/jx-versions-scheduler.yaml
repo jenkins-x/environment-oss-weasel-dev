@@ -60,7 +60,6 @@ spec:
               - tekton
               - boot-local
               - boot-vault
-              - boot-vault-tls
               - boot-lh-ghe
               - boot-vault-upgrade
       queries:
@@ -241,7 +240,7 @@ spec:
       rerunCommand: /test boot-vault
       trigger: (?m)^/test( all| boot| boot-vault),?(s+|$)
     - agent: tekton
-      alwaysRun: true
+      alwaysRun: false
       context: boot-vault-tls
       name: boot-vault-tls
       queries:
