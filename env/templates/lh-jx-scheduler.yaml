@@ -45,9 +45,6 @@ spec:
             entries:
             - pr-build
             - github
-            - ghe
-            - gitlab
-            - bbs
       queries:
       - labels:
           entries:
@@ -75,37 +72,6 @@ spec:
       report: true
       rerunCommand: /test pr-build
       trigger: (?m)^/test( all| pr-build),?(s+|$)
-    - agent: tekton
-      alwaysRun: true
-      context: ghe
-      name: ghe
-      queries:
-      - labels:
-          entries:
-          - approved
-          - lgtm
-        missingLabels:
-          entries:
-          - do-not-merge
-          - do-not-merge/hold
-          - do-not-merge/work-in-progress
-          - needs-ok-to-test
-          - needs-rebase
-          - needs-security-review
-      - labels:
-          entries:
-            - updatebot
-        missingLabels:
-          entries:
-            - do-not-merge
-            - do-not-merge/hold
-            - do-not-merge/work-in-progress
-            - needs-ok-to-test
-            - needs-rebase
-            - needs-security-review
-      report: true
-      rerunCommand: /test ghe
-      trigger: (?m)^/test( all| bdd| all-gh| ghe),?(s+|$)
     - agent: tekton
       alwaysRun: true
       context: github
@@ -137,65 +103,3 @@ spec:
       report: true
       rerunCommand: /test github
       trigger: (?m)^/test( all| bdd| all-gh| github),?(s+|$)
-    - agent: tekton
-      alwaysRun: true
-      context: bbs
-      name: bbs
-      queries:
-      - labels:
-          entries:
-          - approved
-          - lgtm
-        missingLabels:
-          entries:
-          - do-not-merge
-          - do-not-merge/hold
-          - do-not-merge/work-in-progress
-          - needs-ok-to-test
-          - needs-rebase
-          - needs-security-review
-      - labels:
-          entries:
-            - updatebot
-        missingLabels:
-          entries:
-            - do-not-merge
-            - do-not-merge/hold
-            - do-not-merge/work-in-progress
-            - needs-ok-to-test
-            - needs-rebase
-            - needs-security-review
-      report: true
-      rerunCommand: /test bbs
-      trigger: (?m)^/test( all| bdd| bbs),?(s+|$)
-    - agent: tekton
-      alwaysRun: true
-      context: gitlab
-      name: gitlab
-      queries:
-      - labels:
-          entries:
-          - approved
-          - lgtm
-        missingLabels:
-          entries:
-          - do-not-merge
-          - do-not-merge/hold
-          - do-not-merge/work-in-progress
-          - needs-ok-to-test
-          - needs-rebase
-          - needs-security-review
-      - labels:
-          entries:
-            - updatebot
-        missingLabels:
-          entries:
-            - do-not-merge
-            - do-not-merge/hold
-            - do-not-merge/work-in-progress
-            - needs-ok-to-test
-            - needs-rebase
-            - needs-security-review
-      report: true
-      rerunCommand: /test gitlab
-      trigger: (?m)^/test( all| bdd| gitlab),?(s+|$)
