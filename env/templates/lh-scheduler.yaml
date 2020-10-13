@@ -194,6 +194,37 @@ spec:
       trigger: (?m)^/test( all| bdd| tekton),?(s+|$)
     - agent: tekton
       alwaysRun: false
+      context: gitea
+      name: gitea
+      queries:
+        - labels:
+            entries:
+              - approved
+              - lgtm
+          missingLabels:
+            entries:
+              - do-not-merge
+              - do-not-merge/hold
+              - do-not-merge/work-in-progress
+              - needs-ok-to-test
+              - needs-rebase
+              - needs-security-review
+        - labels:
+            entries:
+              - updatebot
+          missingLabels:
+            entries:
+              - do-not-merge
+              - do-not-merge/hold
+              - do-not-merge/work-in-progress
+              - needs-ok-to-test
+              - needs-rebase
+              - needs-security-review
+      report: true
+      rerunCommand: /test gitea
+      trigger: (?m)^/test( all| bdd| gitea),?(s+|$)
+    - agent: tekton
+      alwaysRun: false
       context: migrate-from-prow
       name: migrate-from-prow
       queries:
