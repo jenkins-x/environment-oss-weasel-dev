@@ -86,7 +86,6 @@ env/
     vales.yaml  # tekton specific config 
 ```
   
-  
 #### values.yaml templates
 
 When using `jx step helm apply` we now allow `values.yaml` files to use go/helm templates just like `templates/foo.yaml` files support inside helm charts so that we can generate value/secret strings which can use templating to compose things from smaller secret values. e.g. creating a maven `settings.xml` file or docker `config.json` which includes many user/passwords for different registries.
